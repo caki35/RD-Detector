@@ -1,24 +1,42 @@
 # RD-Detector
 
-This repository contains the implementation of our work https://tvst.arvojournals.org/article.aspx?articleid=2802637, accepted to 
-Translational Vision Science & Technology. 
+This repository contains the implementation of our study, ["Automated Detection of Retinal Detachment Using Deep Learning-Based Segmentation on Ocular Ultrasonography Images"](https://tvst.arvojournals.org/article.aspx?articleid=2802637)
+ published in Translational Vision Science & Technology.
 
 ## Installation
-Please firstly install required libraries: pytorch, opencv, pandas, matplotlib, numpy, scikit-learn, scikit-image
+Before running the code, ensure that the required libraries are installed:: pytorch, opencv, pandas, matplotlib, numpy, scikit-learn, scikit-image
 
 ```bash
 python3 setup.py build_ext --inplace
 ```
 
-## Usuage
+## Usage
 
-### Training
+### Train
 
-This code inputs two folder path in which training and validation segmentation maps are located, extracts clinical explainable features  from the maps, carries out KNN traing whili finding the optimum k, and finilaly saves the knn-models as well as the cost function for finding the optimum k into given SAVE_DIR. 
+
+The training script takes two folder paths containing segmentation maps for training and validation. It extracts clinical explainable features from the segmenpation maps, performs K-Nearest Neighbors (KNN) training while determining the optimum k, and saves both the trained KNN model and the cost function for k selection in given SAVE_DIR.
+
 ```bash
-python train.py TRAIN_DIR_PATH VAL_DIR_PATH SAVE_DIR
+python train.py -t TRAIN_DIR_PATH -v VAL_DIR_PATH -o SAVE_DIR
 ```
 
+### Testing & Inference
+
+The testing and inference scripts process test images in a given test folder using the paths to a trained segmentation model and a classifier model from the previous step.
+- The test script evaluates classification performance by comparing predictions against ground-truth labels (derived from folder names).
+- The inference script generates segmentation outputs without classification results and prints the classification prediction as well.
+
+```bash
+python3 test.py -i TEST_DIR_PATH -s SEGMENTATION_MODEL_PATH -c ML_CLASSIFER_MODEL_PATH -o SAVE_DIR
+```
+
+```bash
+python3 inference.py -i TEST_DIR_PATH -s SEGMENTATION_MODEL_PATH -c ML_CLASSIFER_MODEL_PATH -o SAVE_DIR
+```
+
+You can train your own segmentation model using the following repository:
+https://github.com/caki35/UNet-Torch
 
 ## Citation
 

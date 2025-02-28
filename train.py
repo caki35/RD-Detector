@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument('train', help='train folder path')
-    ap.add_argument('val', help='val folder path')
-    ap.add_argument('save_dir', help='folder path in which the results will be saved')
+    ap.add_argument('-t', '--train', help='train folder path', required=True)
+    ap.add_argument('-v', '--val', help='val folder path', required=True)
+    ap.add_argument('-o', '--save_dir', help='folder path in which the results will be saved', required=True)
     args = ap.parse_args()
     return args
 
