@@ -7,6 +7,25 @@ from skimage import measure
 from tqdm import tqdm
 import shutil
 from skimage.measure import label
+import time
+import torch
+#control  PVD  RD
+label_colors = [(255, 0, 0), (0, 255, 0), (255, 255, 0)]
+
+def create_rgb_mask(mask, label_colors):
+    rgb_mask = np.zeros((mask.shape[0], mask.shape[1], 3), dtype=np.uint8)
+    rgb_mask[mask == 1] = label_colors[0]
+    rgb_mask[mask == 2] = label_colors[1]
+    rgb_mask[mask == 3] = label_colors[2]
+    # rgb_mask[mask == 4] = label_colors[3]
+
+    return rgb_mask
+
+def time_synchronized():
+    # pytorch-accurate time
+    if torch.cuda.is_available():
+        torch.cuda.synchronize() #Wait for all kernels in all streams on a CUDA device to complete.
+    return time.time()
 
 def getSampeList(path):
     image_names = []
@@ -68,8 +87,7 @@ def create_rgb_mask(mask):
     rgb_mask[mask == 2] = label_colors[1]
     rgb_mask[mask == 3] = label_colors[2]
     # rgb_mask[mask == 4] = label_colors[3]
-
-    return rgb_mask
+    return cv2.cvtColor(rgb_mask,cv2.COLOR_BGR2RGB)
 
 def evaluate_results(Y_predicted,Y_actual):
     tp = 0

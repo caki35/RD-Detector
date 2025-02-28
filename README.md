@@ -3,6 +3,23 @@
 This repository contains the implementation of our work https://tvst.arvojournals.org/article.aspx?articleid=2802637, accepted to 
 Translational Vision Science & Technology. 
 
+## Installation
+Please firstly install required libraries: pytorch, opencv, pandas, matplotlib, numpy, scikit-learn, scikit-image
+
+```bash
+python3 setup.py build_ext --inplace
+```
+
+## Usuage
+
+### Training
+
+This code inputs two folder path in which training and validation segmentation maps are located, extracts clinical explainable features  from the maps, carries out KNN traing whili finding the optimum k, and finilaly saves the knn-models as well as the cost function for finding the optimum k into given SAVE_DIR. 
+```bash
+python train.py TRAIN_DIR_PATH VAL_DIR_PATH SAVE_DIR
+```
+
+
 ## Citation
 
 Please consider citing our paper if you find it useful. 
