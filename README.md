@@ -1,10 +1,10 @@
 # RD-Detector
 
-This repository contains the implementation of our study, ["Automated Detection of Retinal Detachment Using Deep Learning-Based Segmentation on Ocular Ultrasonography Images"](https://tvst.arvojournals.org/article.aspx?articleid=2802637)
+This repository contains the implementation of our study, ["Automated Detection of Retinal Detachment Using Deep Learning-Based Segmentation on Ocular Ultrasonography Images"](https://tvst.arvojournals.org/article.aspx?articleid=2802637),
  published in Translational Vision Science & Technology.
 
 ## Installation
-Before running the code, ensure that the required libraries are installed:: pytorch, opencv, pandas, matplotlib, numpy, scikit-learn, scikit-image
+Before running the code, ensure that the required libraries are installed: pytorch, opencv, pandas, matplotlib, numpy, scikit-learn, scikit-image
 
 ```bash
 python3 setup.py build_ext --inplace
